@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Personality Prediction</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+        <label for="gender">Gender:</label>
+    	<input type="number" name="Gender" min=0 max=1 placeholder="Gender"  id="gender" required="required" />    <br>   <br>
+
+
+    	<label for="age">Age:</label>
+        <input type="number" name="Age" min= 17 placeholder="Age" id="age" required="required" />   <br>   <br>
+
+
+        <label for="openness">openness:</label>
+		<input type="number" name="openness" min= 1 max= 8 placeholder="openness" id="openness" required="required" />   <br>    <br>
+
+
+		<label for="neuroticism">neuroticism:</label>
+		<input type="number" name="neuroticism" min=1 max=8 id="neuroticism" placeholder="neuroticism" required="required" />   <br>   <br>
+
+
+		<label for="conscientiousness">conscientiousness:</label>
+		<input type="number" name="conscientiousness" min=1 max=8 id="conscientiousness" placeholder="conscientiousness" required="required" />   <br>
+
+		<label for="agreeableness">agreeableness:</label>
+		<input type="number" name="agreeableness" min=1 max=8 placeholder="agreeableness"  id="agreeableness" required="required" />   <br>   <br>
+
+
+		<label for="extraversion">extraversion:</label>
+		<input type="number" name="extraversion" min=1 max=8 placeholder="extraversion" id="extraversion" required="required" />   <br>   <br>
+
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
+
+
+
