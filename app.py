@@ -17,7 +17,22 @@ def predict():
     For rendering results on HTML GUI
     '''
     #take all values from form as input using request lib
-    int_features = [int(x) for x in request.form.values()]
+    #int_features = [int(x) for x in request.form.values()]
+    #print(int_features)
+    #final_features = [np.array(int_features)]
+    #prediction = model.predict(final_features)
+
+    #output = (prediction[0])
+    int_features=[]
+    for x in request.form.values():
+        if x=="male":
+            int_features.append(1)
+        elif x=="female":
+             int_features.append(0)
+        else:
+            int_features.append(int(x))
+
+
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
 

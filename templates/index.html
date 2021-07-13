@@ -1,61 +1,102 @@
 <!DOCTYPE html>
 <html >
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
+
+
+
 <head>
   <meta charset="UTF-8">
   <title>ML API</title>
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+
+<style media="screen">
+  label{font-size:25px;}
+body{ background-image: url("https://visme.co/blog/wp-content/uploads/2020/03/Character-poses.gif");
+ background-repeat: no-repeat;
+ background-size:cover;
+}
+</style>
+
 </head>
 
 <body>
- <div class="login">
-	<h1>Personality Prediction</h1>
+<br><br><br><br><br>
+  <div class="container" style="margin:auto;background:Transparent;">
+    <div class="row" style="margin:auto;margin-top:auto">
+      <div class="col-md-12" style="margin-top:auto;background:Transparent;">
+
+
+  <div class="card daily-sales" style="margin-top:auto;background:Transparent;">
+
+
+  <div class="card-block"> <div class="login">
+    <br>
+	<h1 style="text-align:center">Personality Prediction</h1>
+
+  <br>
+  <div class="form-row">
+    <div class="form-group col-md-6" style="margin:0 auto 0 auto">
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-        <label for="gender">Gender:</label>
-    	<input type="number" name="Gender" min=0 max=1 placeholder="Gender"  id="gender" required="required" />    <br>   <br>
+    <form action="{{ url_for('predict')}}" style="text-align:center" method="post">
+        <label for="gender"><b>Gender</b></label>
+    	<!-- <input type="number" class="form-control" name="Gender" min=0 max=1 placeholder="Gender"  id="gender" required="required" />    <br> -->
+<select class="form-control" name="Gender" id="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+
+    	<label for="age"><b>Age</b></label>
+        <input type="number" name="Age" min= 17 class="form-control" placeholder="Age" id="age" required="required" />   <br>
 
 
-    	<label for="age">Age:</label>
-        <input type="number" name="Age" min= 17 placeholder="Age" id="age" required="required" />   <br>   <br>
+        <label for="openness"><b>Openness</b></label>
+		<input type="number" name="openness" min= 1 max= 8 placeholder="openness" id="openness" required="required" class="form-control" />   <br>
 
 
-        <label for="openness">openness:</label>
-		<input type="number" name="openness" min= 1 max= 8 placeholder="openness" id="openness" required="required" />   <br>    <br>
+		<label for="neuroticism"><b>Neuroticism</b></label>
+		<input class="form-control" type="number" name="neuroticism" min=1 max=8 id="neuroticism" placeholder="neuroticism" required="required" />      <br>
 
 
-		<label for="neuroticism">neuroticism:</label>
-		<input type="number" name="neuroticism" min=1 max=8 id="neuroticism" placeholder="neuroticism" required="required" />   <br>   <br>
+		<label for="conscientiousness"><b>Conscientiousness</b></label>
+		<input class="form-control" type="number" name="conscientiousness" min=1 max=8 id="conscientiousness" placeholder="conscientiousness" required="required" />
+<br>
+		<label for="agreeableness"><b>Agreeableness</b></label>
+		<input class="form-control" type="number" name="agreeableness" min=1 max=8 placeholder="agreeableness"  id="agreeableness" required="required" />   <br>
 
 
-		<label for="conscientiousness">conscientiousness:</label>
-		<input type="number" name="conscientiousness" min=1 max=8 id="conscientiousness" placeholder="conscientiousness" required="required" />   <br>
-
-		<label for="agreeableness">agreeableness:</label>
-		<input type="number" name="agreeableness" min=1 max=8 placeholder="agreeableness"  id="agreeableness" required="required" />   <br>   <br>
-
-
-		<label for="extraversion">extraversion:</label>
-		<input type="number" name="extraversion" min=1 max=8 placeholder="extraversion" id="extraversion" required="required" />   <br>   <br>
+		<label for="extraversion"><b>Extraversion</b></label>
+		<input class="form-control" type="number" name="extraversion" min=1 max=8 placeholder="extraversion" id="extraversion" required="required" />   <br>
 
 
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary">Predict</button>
     </form>
+  </div>
+</div>
 
    <br>
-   <br>
-   {{ prediction_text }}
 
+   <h3 style="text-align:center">{{ prediction_text }}
+</h3>
  </div>
+</div>
+</div>
+<br><br>
+</div>
 
+</div>
+
+</div>
 
 </body>
 </html>
-
-
-
